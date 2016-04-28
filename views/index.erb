@@ -1,12 +1,11 @@
 <% require 'rest-client' 
 
-value = RestClient::Request.execute(:url => "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/RiotSchmick?api_key=#{apikey}", :method => :get, :verify_ssl => false) || "Didn't Work"
-
+value = RestClient::Request.execute(:url => "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{summonername}?api_key=#{$API_KEY}", :method => :get, :verify_ssl => false)
 
 %>
 
 <p>
-  Key:  <%= apikey %>
+  Key:  <%= $API_KEY %>
   <br>
   Value: <%= value %>
 </p>

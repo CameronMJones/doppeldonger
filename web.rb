@@ -1,7 +1,8 @@
 require 'sinatra'
 
+
 get '/' do
-  "Hello"
+  $API_KEY = ENV['RIOT_API_KEY']
 end
 
 get '/hello/' do
@@ -9,7 +10,7 @@ get '/hello/' do
 end
 
 post '/hello/' do
-  apikey = params[:apikey] || "Hi There"
+  summonername = params[:summonername] || "Hi There"
 
-  erb :index, :locals => {'apikey' => apikey,}
+  erb :index, :locals => {'summonername' => summonername,}
 end
