@@ -1,9 +1,30 @@
-<% require 'rest-client' 
+<%
+require 'rest-client' 
+require 'json'
 
-value = RestClient::Request.execute(:url => "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{summonername}?api_key=#{$API_KEY}", :method => :get, :verify_ssl => false)
+summoner_hash = JSON.parse(RestClient::Request.execute(:url => "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{summonername}?api_key=#{$API_KEY}", :method => :get, :verify_ssl => false))
+summoner_id = summoner_hash.values.first["id"]
+
+summoner_masteries = JSON.parse(RestClient::Request.execute(:url => "https://na.api.pvp.net/championmastery/location/#{region}/player/#{summoner_id}/champions?api_key=#{$API_KEY}", :method => :get, :verify_ssl => false))
+champion_data = JSON.parse(RestClient::Request.execute(:url => "https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?api_key=#{$API_KEY}", :method => :get, :verify_ssl => false))["data"].values
+
+champion_data_by_id = {}
+champion_data.each do |champion|
+  champion_data_by_id[champion["id"]] = champion["name"]
+end
+
+champion_pool = []
+
+summoner_masteries.each do |entry|
+  if entry["championLevel"] > 3
+    champion_pool.push({champion_data_by_id[entry["championId"]] => entry["championPoints"]})
+  end
+end
+
+
 
 %>
 
 <p>
-  Value: <%= value %>
+  Champion Pool: <%= champion_pool %>
 </p>

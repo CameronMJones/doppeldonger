@@ -7,7 +7,8 @@ get '/' do
 end
 
 post '/summonerform/' do
-  summonername = params[:summonername] || "Hi There"
+  summonername = params[:summonername] || ""
+  region = params[:region] || ""
 
-  erb :index, :locals => {'summonername' => summonername,}
+  erb :index, :locals => {'summonername' => summonername, 'region' => region,}
 end
