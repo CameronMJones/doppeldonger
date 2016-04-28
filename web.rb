@@ -2,7 +2,6 @@ require 'sinatra'
 
 
 get '/' do
-  $API_KEY = ENV['RIOT_API_KEY']
 end
 
 get '/hello/' do
