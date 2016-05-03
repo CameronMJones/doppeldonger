@@ -1,25 +1,46 @@
-<h1>Enter a Summoner Name</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<form action="/summonerform/" method="POST">
-  <div class="input-group">
-    <input name="summonername" type="text" placeholder="Please enter a Summoner Name..." class="form-control">
-    <span class="input-group-btn">
-      <button class="btn btn-default" type="submit" id="addressSearch">Submit</button>
-    </span>
-  </div>
-  <span>
-    <form>
-      <input type="radio" name="region" value="NA1" checked> NA1<br>
-      <input type="radio" name="region" value="BR">  BR<br>
-      <input type="radio" name="region" value="EUNE"> EUNE<br>
-      <input type="radio" name="region" value="EUW"> EUW<br>
-      <input type="radio" name="region" value="JP"> JP<br>
-      <input type="radio" name="region" value="KR"> KR<br>
-      <input type="radio" name="region" value="LAN"> LAN<br>
-      <input type="radio" name="region" value="LAS"> LAS<br>
-      <input type="radio" name="region" value="OCE"> OCE<br>
-      <input type="radio" name="region" value="RU"> RU<br>
-      <input type="radio" name="region" value="TR"> TR<br>
-    </form>
-  <span>
-</form>
+<head>
+  <!-- CSS -->
+  <link href="/css/summoner_form.css" rel="stylesheet">
+</head>
+<body>
+  <h1>Enter a Summoner Name</h1>
+
+  <form action="/summonerform/" method="POST">
+    <div class="input-group">
+      <input name="summonername" type="text" placeholder="Please enter a Summoner Name..." class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit" id="addressSearch">Submit</button>
+      </span>
+    </div>
+    <span>
+      <form>
+        <input type="radio" id="NA1" name="region" value="NA1" checked>
+          <label for="NA1">NA1</label>
+        <input type="radio" id="BR" name="region" value="BR">
+          <label for="BR">BR</label>
+        <input type="radio" id="EUNE" name="region" value="EUNE">
+          <label for="EUNE">EUNE</label>
+        <input type="radio" id="EUW" name="region" value="EUW">
+          <label for="EUW">EUW</label>
+        <input type="radio" id="JP" name="region" value="JP">
+          <label for="JP">JP</label>
+        <input type="radio" id="KR" name="region" value="KR">
+          <label for="KR">KR</label>
+        <input type="radio" id="LAN" name="region" value="LAN">
+          <label for="LAN">LAN</label>
+        <input type="radio" id="LAS" name="region" value="LAS">
+          <label for="LAS">LAS</label>
+        <input type="radio" id="OCE" name="region" value="OCE">
+          <label for="OCE">OCE</label>
+        <input type="radio" id="RU" name="region" value="RU">
+          <label for="RU">RU</label>
+        <input type="radio" id="TR" name="region" value="TR">
+          <label for="TR">TR</label>
+      </form>
+    <span>
+  </form>
+</body>
+</html>
