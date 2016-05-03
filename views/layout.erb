@@ -34,7 +34,16 @@
 <body id="page-top" class="index">
   <!-- Navigation -->
   <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header page-scroll">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#page-top">Doppeldonger</a>
       </div>
   </nav>
 
@@ -42,15 +51,21 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-text">
-                      <%= yield %>
-                    </div>
-                </div>
-            </div>
         </div>
     </header>
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Select A Summoner</h2>
+                </div>
+            </div>
+              <%= yield %>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="text-center">
