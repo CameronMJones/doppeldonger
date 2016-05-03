@@ -1,9 +1,25 @@
 <h1>Enter a Summoner Name</h1>
 
 <form action="/summonerform/" method="POST">
-  Summoner Name: <input type="text" name="summonername">
-  <br/>
-  Region: <input type="text" name="region">
-  <br/>
-  <input type="submit">
+  <div class="input-group">
+    <input name="summonername" type="text" placeholder="Please enter a Summoner Name..." class="form-control">
+    <span class="input-group-btn">
+      <button class="btn btn-default" type="submit" id="addressSearch">Submit</button>
+    </span>
+  </div>
+  <span>
+    <form>
+      <input type="radio" name="region" value="NA1" checked> NA1<br>
+      <input type="radio" name="region" value="BR">  BR<br>
+      <input type="radio" name="region" value="EUNE"> EUNE<br>
+      <input type="radio" name="region" value="EUW"> EUW<br>
+      <input type="radio" name="region" value="JP"> JP<br>
+      <input type="radio" name="region" value="KR"> KR<br>
+      <input type="radio" name="region" value="LAN"> LAN<br>
+      <input type="radio" name="region" value="LAS"> LAS<br>
+      <input type="radio" name="region" value="OCE"> OCE<br>
+      <input type="radio" name="region" value="RU"> RU<br>
+      <input type="radio" name="region" value="TR"> TR<br>
+    </form>
+  <span>
 </form>
