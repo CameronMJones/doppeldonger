@@ -16,15 +16,15 @@ class DongerRest
 		call(url)
 	end
 
-	def self.get_summoner_name(id)
-		key = ENV["API_KEY"]
-		url = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/#{id}/name?api_key=#{key}"
-		call(url)
-	end
-
 	def self.get_masteries(id)
 		key = ENV["API_KEY"]
 		url = "https://na.api.pvp.net/championmastery/location/na1/player/#{id}/topchampions?api_key=#{key}"
+		call(url)
+	end
+
+	def self.get_games()
+		key = ENV["API_KEY"]
+		url = "https://na.api.pvp.net/observer-mode/rest/featured?api_key=#{key}"
 		call(url)
 	end
 
