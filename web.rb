@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'haml'
 
 use Rack::Session::Cookie, :expire_after => 10
 
