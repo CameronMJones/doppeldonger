@@ -1,10 +1,15 @@
 require 'sinatra'
 
 use Rack::Session::Cookie, :expire_after => 10
+set :show_exceptions, false
 
 get '/' do
   session[:message] = 'Hello World!'
   redirect to('/welcome')
+end
+
+get '/oops' do
+  erb :oops
 end
 
 $API_KEY = ENV['RIOT_API_KEY']
@@ -18,4 +23,8 @@ post '/summonerform/' do
   region = params[:region] || ""
 
   erb :index, :locals => {'summonername' => summonername, 'region' => region,}
+end
+
+error do
+  erb :oops
 end
