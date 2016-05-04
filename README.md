@@ -1,2 +1,2 @@
-# rito-pls
+# DoppelDonger
 Git Repo for Riot API Challange
