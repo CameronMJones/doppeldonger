@@ -1,5 +1,5 @@
-require 'lib/donger_rest'
-require 'lib/donger_graph'
+require './lib/donger_rest'
+require './lib/donger_graph'
 
 begin
 	graph = DongerGraph.new()

@@ -36,6 +36,15 @@ class DongerGraph
 		@neo.execute_query(query, {:summoner_id => summoner_id, :champion_id => champion_id, :points => points})
 	end
 
+	def sanitize_mastery(id)
+		query = "MATCH (s:Summoner{id:{id}})-[m1:MASTERS]->(c1:Champion)
+						WITH m1
+						ORDER BY m1.points desc
+						SKIP 3
+						DELETE m1"
+		@neo.execute_query(query, {:id => id})
+	end
+
 	def recommend(name)
 		query = "MATCH (s1:Summoner)-[:MASTERS]->(c1:Champion)<-[:MASTERS]-(s2:Summoner)-[:MASTERS]->(c2:Champion)<-[:MASTERS]-(s1),
 						(s2)-[:MASTERS]->(c3:Champion)
