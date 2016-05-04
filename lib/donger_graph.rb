@@ -8,36 +8,32 @@ class DongerGraph
 	end
 
 	def add_champion(id, name, title)
-		node = @neo.create_node("id" => id, "name" => name, "title" => title)
-		@neo.add_label(node, "Champion")
-		node
-	end
-
-	def find_champion(id)
-		@neo.find_nodes_labeled("Champion", {:id => id})[0]
+		query = "MERGE (c:Champion{id:\"#{id}\")
+						ON CREATE SET
+						c.name = \"#{name}\"
+						c.id = \"#{id}\"
+						c.title = \"#{title}\""
+		@neo.execute_query(query)
 	end
 
 	def add_summoner(id, name)
-		node = @neo.create_node("id" => id, "name" => name)
-		@neo.add_label(node, "Summoner")
-		node
+		query = "MERGE (s:Summoner{id:\"#{id}\"})
+						ON CREATE SET
+						s.name = \"#{name}\"
+						s.id = \"#{id}\"
+						s.updated = timestamp()
+						ON MATCH SET
+						s.name = \"#{name}\"
+						s.updated = timestamp()"
+		@neo.execute_query(query)
 	end
 
-	def connect_mastery(summoner, champion, points)
-		relation = @neo.create_relationship("MASTERS", summoner, champion)
-		@neo.set_relationship_properties(relation, {"points" => points})
-		relation
-	end
-
-	def add_trait(name, description)
-		node = @neo.create_node("name" => name, "description" => description)
-		@neo.add_label(node, "Trait")
-		node
-	end
-
-	def connect_trait(trait, champion)
-		relation = @neo.create_relationship("EXHIBITS", traits, champion)
-		relation
+	def connect_mastery(summoner_id, champion_id, points)
+		query = "MATCH (s:Summoner{id=\"#{summoner_id}\"}), 
+						(c:Champion{id=\"#{champion_id}\"})
+						CREATE UNIQUE s-[m:MASTERS]->c
+						SET m.points = #{points}"
+		@neo.execute_query(query)
 	end
 
 	def recommend(summoner_name)
