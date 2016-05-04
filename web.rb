@@ -28,3 +28,8 @@ end
 error do
   erb :oops
 end
+
+not_found do
+  erb :oops
+end
+
