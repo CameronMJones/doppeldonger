@@ -1,5 +1,7 @@
+
+
 <%
-require 'rest-client' 
+require 'rest-client'
 require 'json'
 
 summoner_hash = JSON.parse(RestClient::Request.execute(:url => "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{summonername}?api_key=#{$API_KEY}", :method => :get, :verify_ssl => false))
@@ -20,11 +22,46 @@ summoner_masteries.each do |entry|
     champion_pool.push({champion_data_by_id[entry["championId"]] => entry["championPoints"]})
   end
 end
-
-
-
 %>
 
-<p>
-  Champion Pool: <%= champion_pool %>
-</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="/css/freelancer.css" rel="stylesheet">
+  <link href="/css/summoner_form.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+  <section id="portfolio">
+    <div class="container">
+      <div class="col-lg-6">
+        <div class="row">
+          <div class="col-sm-12 portfolio-item">
+            Select A Summoner Goes Here
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 portfolio-item">
+            Recommendation Text Goes Here
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="col-sm-12 portfolio-item">
+          Selected Hero(s) Go Here
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
