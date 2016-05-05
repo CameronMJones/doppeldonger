@@ -7,31 +7,32 @@ begin
 	games = DongerRest.get_games()["gameList"]
 	players = games.map{|game| game["participants"]}.flatten
 	names = players.map{|player| player["summonerName"]}
-rescue
-	puts 'Could not retrieve featured games'
+rescue Exception => ex
+	puts "Error retrieving featured game list: #{ex.message}"
 	exit
 end
 
 names.each do |name|
 	begin
-		id = DongerRest.get_summoner_id(name)
-	rescue
-		puts "Could not retrieve id for Summoner: #{name}"
+		sleep 2
+		id = DongerRest.get_summoner_id(name).values.first["id"]
+	rescue Exception => ex
+		puts "Error retrieving summoner id for #{name}: #{ex.message}"
 		next
 	end
 
-	begin 
+	begin
+		sleep 2
 		masteries = DongerRest.get_masteries(id)
 		next if masteries.length == 0
-	rescue
-		puts "Could not retrieve masteries for summoner: #{name}"
+	rescue Exception => ex
+		puts "Error retrieving masteries for #{name}: #{ex.message}"
 		next
 	end
 
-	summoner = graph.add_summoner(id, name)
+	graph.add_summoner(id, name)
 	masteries.each do |mastery|
-		champion = graph.find_champion(mastery["championId"])
-		graph.connect_mastery(summoner, champion, mastery["championPoints"])
+		graph.add_mastery(id, mastery["championId"], mastery["championPoints"])
 	end
 
 end
