@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="/css/summoner_form.css" rel="stylesheet">
+</head>
+<body>
+  <form action="/summonerform/" method="POST">
+    <div class="input-group">
+      <input name="summonername" type="text" placeholder="Please enter a Summoner Name..." class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit" id="addressSearch">Submit</button>
+      </span>
+    </div>
+    <br>
+    <div width="100%" align="center">
+      <input type="radio" id="NA1" name="region" value="NA1" checked>
+        <label for="NA1">NA</label>
+      <input type="radio" id="BR" name="region" value="BR">
+        <label for="BR">BR</label>
+      <input type="radio" id="EUNE" name="region" value="EUNE">
+        <label for="EUNE">EUNE</label>
+      <input type="radio" id="EUW" name="region" value="EUW">
+        <label for="EUW">EUW</label>
+      <input type="radio" id="JP" name="region" value="JP">
+        <label for="JP">JP</label>
+      <input type="radio" id="KR" name="region" value="KR">
+        <label for="KR">KR</label>
+      <input type="radio" id="LAN" name="region" value="LAN">
+        <label for="LAN">LAN</label>
+      <input type="radio" id="LAS" name="region" value="LAS">
+        <label for="LAS">LAS</label>
+      <input type="radio" id="OCE" name="region" value="OCE">
+        <label for="OCE">OCE</label>
+      <input type="radio" id="RU" name="region" value="RU">
+        <label for="RU">RU</label>
+      <input type="radio" id="TR" name="region" value="TR">
+        <label for="TR">TR</label>
+    </div>
+  </form>
+</body>
