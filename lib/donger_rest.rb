@@ -10,9 +10,10 @@ class DongerRest
 		call(url)
 	end
 
-	def self.get_summoner_id(name)
-		sanitized_name = name.gsub(/\s+/, "").downcase
-		url = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{sanitized_name}?api_key=#{KEY}"
+	def self.get_summoner_ids(names)
+		sanitized_names = names.map{|name| sanitize(name)}
+		delimited_names = sanitized_names.join(',')
+		url = "https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{delimited_names}?api_key=#{KEY}"
 		call(url)
 	end
 
@@ -31,6 +32,10 @@ class DongerRest
 		request = {:url => url, :method => :get, :verify_ssl => false}
 		response = RestClient::Request.execute(request)
 		JSON.parse(response)
+	end
+
+	def self.sanitize_name(name)
+		name.gsub(/\s+/, "").downcase
 	end
 
 end
