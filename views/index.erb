@@ -20,9 +20,11 @@ champion_pool = []
 
 summoner_masteries.each do |entry|
   if entry["championLevel"] > 3
-    champion_pool.push({champion_data_by_id[entry["championId"]] => entry["championPoints"]})
+    champion_pool.push(champion_data_by_id[entry["championId"]])
   end
 end
+
+champion_pool = champion_pool.slice(0,3)
 %>
 
 <body>
@@ -45,7 +47,13 @@ end
       </div>
       <div class="col-lg-6">
         <div class="col-sm-12 portfolio-item">
-          Selected Hero(s) Go Here
+          Selected Hero(s) Go Here<br/>
+          <div width="100%" align="center">
+            <% champion_pool.each do |champion| %>
+            <input type="radio" id="<%=champion%>" name="selected_champion" value="<%=champion%>" checked>
+              <label for="<%=champion%>"><%=champion%></label>
+            <% end %>
+          <br/>
         </div>
       </div>
     </div>
