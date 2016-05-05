@@ -10,7 +10,8 @@ class DongerRest
 	end
 
 	def self.get_summoners(names)
-		sanitized_names = names.map{|name| sanitize(name)}
+		non_ascii = /\p{ASCII}/
+		sanitized_names = names.map{|name| sanitize(name)}.select{|name| name =~ non_ascii}
 		delimited_names = sanitized_names.join(',')
 		call("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{delimited_names}?api_key=#{KEY}")
 	end
