@@ -1,3 +1,4 @@
+require_relative 'donger_string'
 require 'neography'
 
 class DongerGraph
@@ -8,15 +9,17 @@ class DongerGraph
 	end
 
 	def add_champion(id, name, title)
+		sanitized_name = DongerString.sanitize(name)
 		query = "MERGE (c:Champion{id:{id}})
 						ON CREATE SET
 						c.name = {name},
 						c.id = {id},
 						c.title = {title}"
-		@neo.execute_query(query, {:id => id, :name => name, :title => title})
+		@neo.execute_query(query, {:id => id, :name => sanitized_name, :title => title})
 	end
 
 	def add_summoner(id, name)
+		sanitized_name = DongerString.sanitize(name)
 		query = "MERGE (s:Summoner{id:{id}})
 						ON CREATE SET
 						s.name = {name},
@@ -46,6 +49,7 @@ class DongerGraph
 	end
 
 	def recommend(name)
+		sanitized_name = DongerString.sanitize(name)
 		query = "MATCH (s1:Summoner)-[:MASTERS]->(c1:Champion)<-[:MASTERS]-(s2:Summoner)-[:MASTERS]->(c2:Champion)<-[:MASTERS]-(s1),
 						(s2)-[:MASTERS]->(c3:Champion)
 						WHERE s1.name = {name}
@@ -53,7 +57,7 @@ class DongerGraph
 						RETURN c3, count(distinct c3) as frequency
 						ORDER BY frequency DESC
 						LIMIT 3"
-		@neo.execute_query(query, {:name => name})
+		@neo.execute_query(query, {:name => sanitized_name})
 	end
 
 end
