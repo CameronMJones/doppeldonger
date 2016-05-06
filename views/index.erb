@@ -20,9 +20,11 @@ end
 
 recommendation = graph.recommend(summonername)["data"]
 champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
+
+#champion_pool = ["Bard","Aatrox","Ahri"]
 %>
 
-<body>
+<body onLoad="selectChampion('<%=champion_pool[0]%>')">
   <section id="portfolio">
     <div class="container" style="padding-top:50px;">
       <div class="col-lg-6">
