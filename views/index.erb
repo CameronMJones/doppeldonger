@@ -44,14 +44,36 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
         <div class="col-sm-12 portfolio-item">
           Selected Hero(s) Go Here<br/>
           <div width="100%" align="center">
-            <% champion_pool.each do |champion| %>
-            <input type="radio" id="<%=champion%>" name="selected_champion" value="<%=champion%>" checked>
+            <input type="radio" id="<%=champion_pool[0]%>" name="selected_champion" value="<%=champion_pool[0]%>" onclick="selectChampion('<%=champion_pool[0]%>')" checked>
+              <label for="<%=champion_pool[0]%>"><%=champion_pool[0]%></label>
+            <% champion_pool.drop(1).each do |champion| %>
+            <input type="radio" id="<%=champion%>" name="selected_champion" value="<%=champion%>" onclick="selectChampion('<%=champion%>')">
               <label for="<%=champion%>"><%=champion%></label>
             <% end %>
-          <br/>
+          <div id="recommended_champion" width="100%" align="center">
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <script>
+    function selectChampion(champion) {
+      var champion_image = document.createElement("img");
+      var node = document.getElementById("recommended_champion");
+      var sanitized_champion_name = champion.replace(/\W/g, '');
+
+      champion_image.src = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"+sanitized_champion_name+"_0.jpg";
+      champion_image.style.position = "relative"; 
+      champion_image.style.width = "50%";
+      champion_image.style.height = "50%";
+
+      while (node.hasChildNodes()) {
+        node.removeChild(node.lastChild);
+      }
+
+      node.appendChild(champion_image);
+    }
+  </script>
 </body>
 </html>
