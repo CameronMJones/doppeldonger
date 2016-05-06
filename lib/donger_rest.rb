@@ -1,3 +1,4 @@
+require_relative 'donger_string'
 require 'rest-client'
 require 'json'
 
@@ -10,8 +11,8 @@ class DongerRest
 	end
 
 	def self.get_summoners(names)
-		non_ascii = /\p{ASCII}/
-		sanitized_names = names.map{|name| sanitize(name)}.select{|name| name =~ non_ascii}
+		sanitized_names = names.map{|name| DongerString.sanitize(name)}
+		encoded_names = sanitized_names.map{|name| DongerString.encode(name)}
 		delimited_names = sanitized_names.join(',')
 		call("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{delimited_names}?api_key=#{KEY}")
 	end
@@ -34,10 +35,6 @@ class DongerRest
 		request = {:url => url, :method => :get, :verify_ssl => false}
 		response = RestClient::Request.execute(request)
 		JSON.parse(response)
-	end
-
-	def self.sanitize(name)
-		name.gsub(/\s+/, "").downcase
 	end
 
 end
