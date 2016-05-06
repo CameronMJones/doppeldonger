@@ -28,7 +28,7 @@ class DongerGraph
 						ON MATCH SET
 						s.name = {name},
 						s.updated = timestamp()"
-		@neo.execute_query(query,{:id => id, :name => name})
+		@neo.execute_query(query,{:id => id, :name => sanitized_name})
 	end
 
 	def add_mastery(summoner_id, champion_id, points)
@@ -48,7 +48,7 @@ class DongerGraph
 		@neo.execute_query(query, {:id => id})
 	end
 
-	def get_mastery(summoner_name)
+	def get_mastery(name)
 		sanitized_name = DongerString.sanitize(name)
 		query = "MATCH (s:Summoner)-[m:MASTERS]->(c:Champion)
 						WHERE s.name={name}
@@ -62,7 +62,7 @@ class DongerGraph
 						(s2)-[:MASTERS]->(c3:Champion)
 						WHERE s1.name = {name}
 						AND NOT (s1)-[:MASTERS]->(c3)
-						RETURN c3, count(distinct c3) as frequency
+						RETURN c3, count(c3) as frequency
 						ORDER BY frequency DESC
 						LIMIT 3"
 		@neo.execute_query(query, {:name => sanitized_name})
