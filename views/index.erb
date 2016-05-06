@@ -21,7 +21,7 @@ end
 recommendation = graph.recommend(summonername)["data"]
 champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 
-#champion_pool = ["Bard","Aatrox","Ahri"]
+# champion_pool = ["Bard","Aatrox","Ahri"]
 %>
 
 <body onLoad="selectChampion('<%=champion_pool[0]%>')">
@@ -44,7 +44,6 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
       </div>
       <div class="col-lg-6">
         <div class="col-sm-12 portfolio-item">
-          Selected Hero(s) Go Here<br/>
           <div width="100%" align="center">
             <input type="radio" id="<%=champion_pool[0]%>" name="selected_champion" value="<%=champion_pool[0]%>" onclick="selectChampion('<%=champion_pool[0]%>')" checked>
               <label for="<%=champion_pool[0]%>"><%=champion_pool[0]%></label>
