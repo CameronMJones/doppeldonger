@@ -66,14 +66,17 @@ champion_pool = champion_pool.slice(0,3)
     function selectChampion(champion) {
       var champion_image = document.createElement("img");
       var node = document.getElementById("recommended_champion");
+      var sanitized_champion_name = champion.replace(/\W/g, '');
 
-      champion_image.src = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"+champion+"_0.jpg";
+      champion_image.src = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"+sanitized_champion_name+"_0.jpg";
       champion_image.style.position = "relative"; 
       champion_image.style.width = "50%";
       champion_image.style.height = "50%";
+
       while (node.hasChildNodes()) {
-            node.removeChild(node.lastChild);
+        node.removeChild(node.lastChild);
       }
+
       node.appendChild(champion_image);
     }
   </script>
