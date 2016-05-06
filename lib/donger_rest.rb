@@ -4,7 +4,6 @@ require 'json'
 
 class DongerRest
 	KEY = ENV["API_KEY"]
-	LIMIT = ENV["API_RATE_LIMIT"].to_f
 
 	def self.get_champions()
 		call("https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?champData=tags&api_key=#{KEY}")
@@ -31,7 +30,7 @@ class DongerRest
 	end
 
 	def self.call(url)
-		sleep LIMIT
+		sleep 0.01
 		request = {:url => url, :method => :get, :verify_ssl => false}
 		response = RestClient::Request.execute(request)
 		JSON.parse(response)
