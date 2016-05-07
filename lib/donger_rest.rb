@@ -41,6 +41,10 @@ class DongerRest
 		call("https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/#{delimited_names}?api_key=#{KEY}")
 	end
 
+	def self.get_champion_name(id)
+		call("https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/#{id}?champData=info&api_key=#{KEY}")["name"]
+	end
+
 	def self.get_masteries(id)
 		call("https://na.api.pvp.net/championmastery/location/na1/player/#{id}/topchampions?api_key=#{KEY}")
 	end
