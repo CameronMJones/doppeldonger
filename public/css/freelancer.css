@@ -267,6 +267,28 @@ section.success a.active {
 }
 
 @media(max-height:550px) {
+  #hiemer-oops {
+    display: none;
+  }
+
+  #oops-div {
+    padding-top: 100px;
+  }
+}
+
+@media(max-width:767px) {
+  #hiemer-oops {
+    display: none;
+  }
+}
+
+@media(min-width:768px) {
+  #oops-text {
+    padding-top: 82px;
+  }
+}
+
+@media(max-height:550px) {
   #heimer_img {
     display: none;
   }
