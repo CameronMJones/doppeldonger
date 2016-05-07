@@ -22,7 +22,7 @@ a:focus,
 a:active,
 a.active {
     outline: 0;
-    color: #18bc9c;
+    color: #1A4980;
 }
 
 h1,
@@ -31,9 +31,9 @@ h3,
 h4,
 h5,
 h6 {
-    text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: 700;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: #5893DC;
+    text-shadow: -1px 0 #2461AD, 0 1px #2461AA, 1px 0 #2461AA, 0 -1px #2461AA;
 }
 
 hr.star-light,
@@ -63,7 +63,7 @@ hr.star-light {
 
 hr.star-light:after {
     color: #fff;
-    background-color: #18bc9c;
+    background-color: #fff;
 }
 
 hr.star-primary {
@@ -148,7 +148,7 @@ header .intro-text .skills {
 
 .navbar {
     text-transform: uppercase;
-    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-family: "Comic Sans MS", cursive, sans-serif;
     font-weight: 700;
 }
 
@@ -180,7 +180,7 @@ section h2 {
 
 section.success {
     color: #fff;
-    background: #18bc9c;
+    background: #fff;
 }
 
 section.success a,
@@ -273,7 +273,7 @@ section.success a.active {
 .btn-outline:active,
 .btn-outline.active {
     border: solid 2px #fff;
-    color: #18bc9c;
+    color: #fff;
     background: #fff;
 }
 
@@ -326,7 +326,7 @@ section.success a.active {
 }
 
 .floating-label-form-group-with-focus label {
-    color: #18bc9c;
+    color: #fff;
 }
 
 form .row:first-child .floating-label-form-group {
@@ -352,7 +352,7 @@ footer .footer-col {
 
 footer .footer-below {
     padding: 25px 0;
-    background-color: #233140;
+    background-color: #0F0B05;
     width: 100%;
     position: fixed;
     bottom: 0px;
