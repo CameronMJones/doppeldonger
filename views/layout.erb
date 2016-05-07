@@ -41,6 +41,7 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header page-scroll">
           <a class="navbar-brand" href="/">Doppeldonger</a>
+          <p class="small" id="quote" style="color:#fff;padding-left:25px;"></p>
       </div>
   </nav>
 
@@ -79,6 +80,12 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/freelancer.js"></script>
+
+    <script>
+      function setQuote(quote) {
+        document.getElementById("quote").innerHTML = "&quot"+quote+"&quot";
+      }
+    </script>
 
 </body>
 </html>
