@@ -61,7 +61,6 @@ private
     name = name.gsub(/\W+/, '')
     champ_keys.each do |champ|
       if name.downcase == champ.downcase
-        puts "RETURNING: #{champ}"
         return champ
       end
     end
