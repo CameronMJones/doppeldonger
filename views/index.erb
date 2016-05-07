@@ -34,8 +34,8 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
       <div class="col-lg-3" align="center">
         <h2><%=summonername%></h2>
         <p>Title</p>
+        <hr>
         <div class="col-md-12">
-          <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
           <%masteries.each do |mastery|%>
             <div class="row">
@@ -48,10 +48,9 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
               </div>
             </div>
           <%end%>
-          <hr>
         </div>
         <div>
-          Patterns Found Here
+          <p style="text-decoration:underline;">Patterns We Found</p>
         </div>
       </div>
       <% champion_pool.each do |champion| %>
