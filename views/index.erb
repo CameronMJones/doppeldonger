@@ -32,12 +32,7 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
         <h2><%=summonername%></h2>
         <p>Title</p>
         <div id="row">
-          Current Mastery Information Here
-          <%=if masteries.length == 0<%>
-          <p>No Mastery Data Found!</p>
-          <%else%>
-          <p>found</p>
-          <% end %>
+          masteries
         </div>
         <div id="row">
           Patterns Found Here
