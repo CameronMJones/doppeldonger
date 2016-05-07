@@ -21,7 +21,7 @@ class DongerRest
     all_champion_spell_information = call("https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?champData=spells&api_key=#{KEY}")
     champion_spells = all_champion_spell_information["data"][champion]["spells"]
     champion_spells.each do |spell|
-      results.push({"description"=>"#{spell["name"]}: #{spell["description"]}","image"=>spell["image"]["full"]})
+      results.push({"description"=>"#{spell["name"]}: #{spell["sanitizedDescription"]}","image"=>spell["image"]["full"]})
     end
 
     results
@@ -31,7 +31,7 @@ class DongerRest
     champion = sanitize_name(champion)
     all_champion_passive_information = call("https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?champData=passive&api_key=#{KEY}")
     champion_passive = all_champion_passive_information["data"][champion]
-    result = {"description"=>"#{champion_passive["passive"]["name"]}: #{champion_passive["passive"]["description"]}","image"=>champion_passive["passive"]["image"]["full"]}
+    result = {"description"=>"#{champion_passive["passive"]["name"]}: #{champion_passive["passive"]["sanitizedDescription"]}","image"=>champion_passive["passive"]["image"]["full"]}
   end
 
 	def self.get_summoners(names)
