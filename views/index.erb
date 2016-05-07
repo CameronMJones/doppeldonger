@@ -34,19 +34,22 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
       <div class="col-lg-3" align="center">
         <h2><%=summonername%></h2>
         <p>Title</p>
+        <hr>
         <div class="col-md-12">
+          <p style="text-decoration:underline;">Top Masteries</p>
           <%masteries.each do |mastery|%>
             <div class="row">
-              <div class="col-md-3">
-                <%=mastery["championLevel"]%>
-                <%=mastery["championPoints"]%>
+              <div class="col-md-4">
+                <p style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;"><%=mastery["championLevel"]%></p>
+                <p style="font-size:10px;"><%=mastery["championPoints"]%></p>
               </div>
-              <div class="col-md-9">
-                <h2 class="small"><%=DongerRest.get_champion_name(mastery["championId"])%></h2>
+              <div class="col-md-8">
+                <p><%=DongerRest.get_champion_name(mastery["championId"])%><p>
               </div>
             </div>
           <%end%>
         </div>
+        <hr>
         <div>
           Patterns Found Here
         </div>
