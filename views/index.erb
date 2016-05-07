@@ -38,11 +38,11 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
           <%masteries.each do |mastery|%>
             <div class="row">
               <div class="col-md-3">
-                <div class="row"><%=mastery["championLevel"]%></div>
-                <div class="row"><%=mastery["championPoints"]%></div>
+                <%=mastery["championLevel"]%>
+                <%=mastery["championPoints"]%>
               </div>
               <div class="col-md-9">
-                <%=DongerRest.get_champion_name(mastery["championId"])%>
+                <h2 class="small"><%=DongerRest.get_champion_name(mastery["championId"])%></h2>
               </div>
             </div>
           <%end%>
