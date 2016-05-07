@@ -54,11 +54,17 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
           <p style="text-decoration:underline;">Patterns We Found</p>
         </div>
       </div>
+      <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-9" style="padding-bottom:20px">
+          <h2> Have you considered trying...</h2>
+        </div>
+      </div>
       <% champion_pool.each do |champion| %>
       <div class="col-lg-3" align="center">
         <h3><%=champion%></h3>
         <% skin_key = DongerRest.get_champion_skin_key(champion) %>
-        <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/<%=skin_key%>_0.jpg" style="max-width:100%;position:relative;"</img>
+        <img title="<%=champion%>" src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/<%=skin_key%>_0.jpg" style="max-width:100%;position:relative;"</img>
         <div class="row" style="padding-top:20px;padding-left:10px;padding-right:10px;">
           <% champion_passive = DongerRest.get_passive(champion)%>
           <div class="col-sm-3" align="center" style="padding-left:0px;padding-right:0px;">
