@@ -41,11 +41,11 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
               <div class="row"><%=mastery["championPoints"]%></div>
             </div>
             <div class="col-md-9">
-              <%=DongerRest.get_champion_name(mastery["championId"])  gi%>
+              <%=DongerRest.get_champion_name(mastery["championId"])%>
             </div>
           <%end%>
         </div>
-        <div id="row">
+        <div>
           Patterns Found Here
         </div>
       </div>
