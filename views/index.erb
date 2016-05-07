@@ -5,15 +5,16 @@
 require './lib/donger_rest'
 require './lib/donger_graph'
 
-masteries = {}
 
 graph = DongerGraph.new()
 mastery_data = graph.get_mastery(summonername)["data"]
+
+summoner = DongerRest.get_summoners([summonername]).values[0]
+id = summoner["id"]
+masteries = DongerRest.get_masteries(id)
+raise "No Masteries" if masteries.length == 0
+
 if mastery_data.length == 0
-  summoner = DongerRest.get_summoners([summonername]).values[0]
-  id = summoner["id"]
-  masteries = DongerRest.get_masteries(id)
-  raise "No Masteries" if masteries.length == 0
   graph.add_summoner(id, summonername)
   masteries.each do |mastery|
     graph.add_mastery(id, mastery["championId"], mastery["championPoints"])
@@ -34,7 +35,7 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
         <h2><%=summonername%></h2>
         <p>Title</p>
         <div id="row">
-          <%=masteries%>
+          <%=%>
         </div>
         <div id="row">
           Patterns Found Here
