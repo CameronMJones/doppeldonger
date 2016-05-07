@@ -9,7 +9,14 @@ class DongerRest
 		call("https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?champData=tags&api_key=#{KEY}")
 	end
 
+  def self.get_champion_skin_key(champion)
+    champion = sanitize_name(champion)
+    all_champion_skin_keys = call("https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?champData=skins&api_key=#{KEY}")
+    champion_skin_key = all_champion_skin_keys["data"][champion]["key"]
+  end
+
   def self.get_champion_skills(champion)
+    champion = sanitize_name(champion)
     results = []
     all_champion_spell_information = call("https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?champData=spells&api_key=#{KEY}")
     champion_spells = all_champion_spell_information["data"][champion]["spells"]
@@ -21,6 +28,7 @@ class DongerRest
   end
 
   def self.get_passive(champion)
+    champion = sanitize_name(champion)
     all_champion_passive_information = call("https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?champData=passive&api_key=#{KEY}")
     champion_passive = all_champion_passive_information["data"][champion]
     result = {"description"=>"#{champion_passive["passive"]["name"]}: #{champion_passive["passive"]["description"]}","image"=>champion_passive["passive"]["image"]["full"]}
@@ -45,6 +53,21 @@ class DongerRest
 	def self.get_games()
 		call("https://na.api.pvp.net/observer-mode/rest/featured?api_key=#{KEY}")
 	end
+
+private
+
+  def self.sanitize_name(name)
+    champ_keys = ["Thresh", "Aatrox", "Tryndamere", "Gragas", "Cassiopeia", "AurelionSol", "Ryze", "Poppy", "Sion", "Jhin", "Annie", "Nautilus", "Karma", "Lux", "Ahri", "Olaf", "Viktor", "Singed", "Garen", "Anivia", "Maokai", "Lissandra", "Morgana", "Fizz", "Evelynn", "Zed", "Heimerdinger", "Rumble", "Sona", "Mordekaiser", "KogMaw", "Katarina", "Lulu", "Ashe", "Karthus", "Alistar", "Darius", "Vayne", "Varus", "Udyr", "Leona", "Jayce", "Syndra", "Pantheon", "Riven", "Khazix", "Corki", "Caitlyn", "Azir", "Nidalee", "Kennen", "Galio", "Veigar", "Bard", "Gnar", "Malzahar", "Graves", "Vi", "Kayle", "Irelia", "LeeSin", "Illaoi", "Elise", "Volibear", "Nunu", "TwistedFate", "Jax", "Shyvana", "Kalista", "DrMundo", "TahmKench", "Diana", "Brand", "Sejuani", "Vladimir", "Zac", "RekSai", "Quinn", "Akali", "Tristana", "Hecarim", "Sivir", "Lucian", "Rengar", "Warwick", "Skarner", "Malphite", "Yasuo", "Xerath", "Teemo", "Renekton", "Nasus", "Draven", "Shaco", "Swain", "Ziggs", "Talon", "Janna", "Ekko", "Orianna", "Fiora", "FiddleSticks", "Rammus", "Chogath", "Leblanc", "Zilean", "Soraka", "Nocturne", "Jinx", "Yorick", "Urgot", "Kindred", "MissFortune", "MonkeyKing", "Blitzcrank", "Shen", "Braum", "XinZhao", "Twitch", "MasterYi", "Taric", "Amumu", "Gangplank", "Trundle", "Kassadin", "Velkoz", "Zyra", "Nami", "JarvanIV", "Ezreal"]
+    name = name.gsub(/\W+/, '')
+    champ_keys.each do |champ|
+      if name.downcase == champ.downcase
+        puts "RETURNING: #{champ}"
+        return champ
+      end
+    end
+
+    name
+  end
 
 	def self.call(url)
 		sleep 0.01
