@@ -30,6 +30,12 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 <body onLoad="setQuote('Just as I hypothesized!')">
   <section id="portfolio">
     <div class="container" style="padding-top:100px;">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-9" style="padding-bottom:20px">
+          <h2> Have you considered trying...</h2>
+        </div>
+      </div>
       <div class="col-lg-3" align="center">
         <h2><%=summonername%></h2>
         <p>Title</p>
@@ -51,12 +57,6 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
         </div>
         <div>
           <p style="text-decoration:underline;">Patterns We Found</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-9" style="padding-bottom:20px">
-          <h2> Have you considered trying...</h2>
         </div>
       </div>
       <% champion_pool.each do |champion| %>
