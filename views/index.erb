@@ -5,6 +5,8 @@
 require './lib/donger_rest'
 require './lib/donger_graph'
 
+masteries = {}
+
 graph = DongerGraph.new()
 mastery_data = graph.get_mastery(summonername)["data"]
 if mastery_data.length == 0
