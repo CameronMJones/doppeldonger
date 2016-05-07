@@ -36,17 +36,19 @@
 
 <body id="page-top" class="index">
   <!-- Navigation -->
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="">
+  <nav id="my-header" class="navbar navbar-default" style="color:black;width:100%;padding-top:25px;padding-bottom:25px;left:0;right:0;z-index:1030;">
       <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header page-scroll">
-          <a class="navbar-brand" href="/">Doppeldonger</a>
-          <p class="small" id="quote" style="color:#fff;padding-left:25px;"></p>
-      </div>
+    <div class="navbar-header">
+        <div class="row" style="padding-left:10px;">
+          <a class="navbar-brand" style="font-size:30px";href="/">Doppeldonger</a>
+        </div>
+        <div class="row">
+          <p id="quote" class="small" id="quote" style="color:#fff;padding-left:35px;"></p>
+        </div>
   </nav>
 
   </div>
-    <img class="heimer_img" src="/img/Heimer200.png" alt="Heimer Logo">
+    <img id="heimer_img" src="/img/Heimer200.png" alt="Heimer Logo">
     <%= yield %>
   </div>
 
