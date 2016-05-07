@@ -57,6 +57,9 @@ class DongerRest
   def self.sanitize_name(name)
     champ_keys = ["Thresh", "Aatrox", "Tryndamere", "Gragas", "Cassiopeia", "AurelionSol", "Ryze", "Poppy", "Sion", "Jhin", "Annie", "Nautilus", "Karma", "Lux", "Ahri", "Olaf", "Viktor", "Singed", "Garen", "Anivia", "Maokai", "Lissandra", "Morgana", "Fizz", "Evelynn", "Zed", "Heimerdinger", "Rumble", "Sona", "Mordekaiser", "KogMaw", "Katarina", "Lulu", "Ashe", "Karthus", "Alistar", "Darius", "Vayne", "Varus", "Udyr", "Leona", "Jayce", "Syndra", "Pantheon", "Riven", "Khazix", "Corki", "Caitlyn", "Azir", "Nidalee", "Kennen", "Galio", "Veigar", "Bard", "Gnar", "Malzahar", "Graves", "Vi", "Kayle", "Irelia", "LeeSin", "Illaoi", "Elise", "Volibear", "Nunu", "TwistedFate", "Jax", "Shyvana", "Kalista", "DrMundo", "TahmKench", "Diana", "Brand", "Sejuani", "Vladimir", "Zac", "RekSai", "Quinn", "Akali", "Tristana", "Hecarim", "Sivir", "Lucian", "Rengar", "Warwick", "Skarner", "Malphite", "Yasuo", "Xerath", "Teemo", "Renekton", "Nasus", "Draven", "Shaco", "Swain", "Ziggs", "Talon", "Janna", "Ekko", "Orianna", "Fiora", "FiddleSticks", "Rammus", "Chogath", "Leblanc", "Zilean", "Soraka", "Nocturne", "Jinx", "Yorick", "Urgot", "Kindred", "MissFortune", "Blitzcrank", "Shen", "Braum", "XinZhao", "Twitch", "MasterYi", "Taric", "Amumu", "Gangplank", "Trundle", "Kassadin", "Velkoz", "Zyra", "Nami", "JarvanIV", "Ezreal", "MonkeyKing"]
     name = name.gsub(/\W+/, '')
+    if name.downcase == "wukong"
+      return "MonkeyKing"
+    end
     champ_keys.each do |champ|
       if name.downcase == champ.downcase
         return champ
