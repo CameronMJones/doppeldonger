@@ -21,60 +21,34 @@ end
 recommendation = graph.recommend(summonername)["data"]
 champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 
-# champion_pool = ["Bard","Aatrox","Ahri"]
+#champion_pool = ["Bard","Aatrox","Ahri"]
 %>
 
 <body onLoad="selectChampion('<%=champion_pool[0]%>')">
   <section id="portfolio">
     <div class="container" style="padding-top:50px;">
-      <div class="col-lg-6">
-        <div class="row">
-          <div class="col-sm-12 portfolio-item">
-            <div class="col-lg-12 text-center">
-              <h2>Select Another Summoner?</h2>
-            </div>
-            <%= erb :select_a_summoner %>
+      <div class="col-lg-3">
+        Info goes here
+      </div>
+      <% champion_pool.each do |champion| %>
+      <div class="col-lg-3" align="center">
+        <h3><%=champion%></h3>
+        <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/<%=champion%>_0.jpg" style="max-width:100%;position:relative;"</img>
+        <div class="row" style="padding-top:20px">
+          <% champion_passive = DongerRest.get_passive(champion)%>
+          <div class="col-sm-3" align="center" style="padding-left:0px;padding-right:0px;">
+            <img title="<%=champion_passive["description"]%>" src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/passive/<%=champion_passive["image"]%>" style="max-width:80%;position:relative;">
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12 portfolio-item">
-            Recommendation Text Goes Here
+          <% DongerRest.get_champion_skills(champion).each do |spell| %>
+          <div class="col-sm-3" align="center" style="padding-left:0px;padding-right:0px;">
+            <img title="<%=spell["description"]%>" src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/spell/<%=spell["image"]%>" style="max-width:80%;position:relative;">
           </div>
+          <% end %>
         </div>
       </div>
-      <div class="col-lg-6">
-        <div class="col-sm-12 portfolio-item">
-          <div width="100%" align="center">
-            <input type="radio" id="<%=champion_pool[0]%>" name="selected_champion" value="<%=champion_pool[0]%>" onclick="selectChampion('<%=champion_pool[0]%>')" checked>
-              <label for="<%=champion_pool[0]%>"><%=champion_pool[0]%></label>
-            <% champion_pool.drop(1).each do |champion| %>
-            <input type="radio" id="<%=champion%>" name="selected_champion" value="<%=champion%>" onclick="selectChampion('<%=champion%>')">
-              <label for="<%=champion%>"><%=champion%></label>
-            <% end %>
-          <div id="recommended_champion" width="100%" align="center">
-          </div>
-        </div>
-      </div>
+      <% end %>
     </div>
   </section>
 
-  <script>
-    function selectChampion(champion) {
-      var champion_image = document.createElement("img");
-      var node = document.getElementById("recommended_champion");
-      var sanitized_champion_name = champion.replace(/\W/g, '');
-
-      champion_image.src = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/"+sanitized_champion_name+"_0.jpg";
-      champion_image.style.position = "relative"; 
-      champion_image.style.width = "50%";
-      champion_image.style.height = "50%";
-
-      while (node.hasChildNodes()) {
-        node.removeChild(node.lastChild);
-      }
-
-      node.appendChild(champion_image);
-    }
-  </script>
 </body>
 </html>
