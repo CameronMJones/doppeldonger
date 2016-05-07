@@ -34,8 +34,6 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
       <% champion_pool.each do |champion| %>
       <div class="col-lg-3" align="center">
         <h3><%=champion%></h3>
-        <% skin_key = DongerRest.get_champion_skin_key(champion) %>
-        <img src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/<%=skin_key%>_0.jpg" style="max-width:100%;position:relative;"</img>
       </div>
       <% end %>
     </div>
