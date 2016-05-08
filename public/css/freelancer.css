@@ -276,7 +276,7 @@ section.success a.active {
   }
 }
 
-@media(max-width:767px) {
+@media(max-width:767px), (max-height:600px) {
   #hiemer-oops {
     display: none;
   }
@@ -285,6 +285,7 @@ section.success a.active {
 @media(min-width:768px) {
   #oops-text {
     padding-top: 82px;
+    padding-bottom: 50px;
   }
 }
 
