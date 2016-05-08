@@ -254,12 +254,6 @@ section.success a.active {
     z-index: 2;
 }
 
-@media(max-width:1024px) {
-  #summonerinfo {
-    display: none;
-  }
-}
-
 @media(min-width:767px) {
     #portfolio .portfolio-item {
         margin: 0 0 30px;
