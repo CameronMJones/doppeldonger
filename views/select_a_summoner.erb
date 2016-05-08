@@ -36,5 +36,11 @@
       <input type="radio" id="TR" name="region" value="TR">
         <label for="TR">TR</label>
     </div>
+    <br/>
+    <% if flash[:error] %>
+    <p style="font-size:18px;color:red;text-align:center;width:100%;">
+      <%= flash[:error] %>
+    </p>
+    <% end %>
   </form>
 </body>
