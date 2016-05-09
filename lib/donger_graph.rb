@@ -56,6 +56,22 @@ class DongerGraph
 		@neo.execute_query(query, {:name => sanitized_name})
 	end
 
+	def add_attribute(name)
+		query = "MERGE (a:Attribute{name:{name}})
+				ON CREATE SET
+				a.name = {name}
+				ON MATCH SET
+				a.name = {name}"
+		@neo.execute_query(query, {:name => name})
+	end
+
+	def add_exhibits(champion_id, name)
+		query = "MATCH (c:Champion{id:{champion_id}}), 
+				(a:Attribute{name:{name}})
+				CREATE UNIQUE (c)-[e:EXHIBITS]->(a)"
+		@neo.execute_query(query, {:champion_id => champion_id, :name => name)
+	end
+
 	def recommend(name)
 		sanitized_name = DongerString.sanitize(name)
 		query = "MATCH (s1:Summoner)-[:MASTERS]->(c1:Champion)<-[:MASTERS]-(s2:Summoner)-[:MASTERS]->(c2:Champion)<-[:MASTERS]-(s1),

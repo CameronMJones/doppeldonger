@@ -5,8 +5,8 @@ require 'json'
 class DongerRest
 	KEY = ENV["RIOT_API_KEY"]
 
-	def self.get_champions()
-		call("https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?champData=tags&api_key=#{KEY}")
+	def self.get_champion_info()
+		call("https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?champData=all&api_key=#{KEY}")
 	end
 
   def self.get_champion_skin_key(champion)
