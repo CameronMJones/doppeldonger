@@ -69,7 +69,7 @@ class DongerGraph
 		query = "MATCH (c:Champion{id:{champion_id}}), 
 				(a:Attribute{name:{name}})
 				CREATE UNIQUE (c)-[e:EXHIBITS]->(a)"
-		@neo.execute_query(query, {:champion_id => champion_id, :name => name)
+		@neo.execute_query(query, {:champion_id => champion_id, :name => name})
 	end
 
 	def recommend(name)
