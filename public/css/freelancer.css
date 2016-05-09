@@ -189,7 +189,7 @@ header .intro-text .skills {
 }
 
 section {
-    padding: 100px 0;
+    padding-bottom: 100px 0;
 }
 
 section h2 {
@@ -428,12 +428,6 @@ footer .footer-below {
     padding-top:150px;
     padding-bottom:15px;
   }
-}
-
-@media(min-width:767px) {
-    #my-header {
-      position: fixed;
-    }
 }
 
 .btn-social {
