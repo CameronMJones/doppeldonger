@@ -48,8 +48,7 @@ end
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
-          <% hashindex = 0 %>
-          <%= uniquehash %>
+          <% hashindex = 1 %>
           <%masteries.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
@@ -58,10 +57,10 @@ end
               </div>
               <div class="col-md-8">
                 <p><%=DongerRest.get_champion_name(mastery["championId"])%><p>
-                <% if hashindex == 0 %>
-                  <p style="font-size:10px;">"<%=uniquehash[hashindex]%>%"</p>
+                <% if hashindex == 1 %>
+                  <p title="<%=uniquehash[hashindex]%>% of people main this champ" style="font-size:10px;">"<%=uniquehash[hashindex]%>%"</p>
                 <% else %>
-                  <p style="font-size:10px;">"<%=uniquehash[hashindex]%>%"</p>
+                  <p title="<%=uniquehash[hashindex]%>% those people use this champ as their <%=hashindex%>" style="font-size:10px;">"<%=uniquehash[hashindex]%>%"</p>
                 <% end %>
               </div>
             </div>
