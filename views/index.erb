@@ -59,7 +59,7 @@ end
                 <% if hashindex == 1 %>
                   <p title="<%=uniquehash[hashindex]%>% of people main this champ as their #<%=hashindex%>" style="font-size:10px;"><%=uniquehash[hashindex]%>%</p>
                 <% else
-                     if uniquehash[hashindex] != "" %>
+                     if !uniquehash[hashindex].nil? %>
                   <p title="<%=uniquehash[hashindex]%>% of those people use this champ as their #<%=hashindex%>" style="font-size:10px;"><%=uniquehash[hashindex]%>%</p>
                      <% else %>
                   <p title="0% of those people use this champ as their #<%=hashindex%>" style="font-size:10px;">0%</p>
