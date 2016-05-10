@@ -8,14 +8,18 @@ class DongerGraph
 		@neo = Neography::Rest.new(ENV["GRAPHSTORY_URL"])
 	end
 
-	def add_champion(id, name, title)
+	def add_champion(id, name, title, key)
 		sanitized_name = DongerString.sanitize(name)
 		query = "MERGE (c:Champion{id:{id}})
 				ON CREATE SET
 				c.name = {name},
 				c.id = {id},
-				c.title = {title}"
-		@neo.execute_query(query, {:id => id, :name => sanitized_name, :title => title})
+				c.title = {title}
+				c.key = {key}
+				ON MATCH SET
+				c.title = {title},
+				c.key = {key}"
+		@neo.execute_query(query, {:id => id, :name => sanitized_name, :title => title, :key => key})
 	end
 
 	def add_summoner(id, name)
