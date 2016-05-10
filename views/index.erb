@@ -42,13 +42,7 @@ uniqueness = graph.get_uniqueness(summonername)["data"]
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
-          <%
-          if uniqueness.lengh > 0
-            uniqueness.each do |unique-percent|%>
-              <p><%= unique-percent %></p>
-            <%end
-          end
-          %>
+          <%=uniqueness%>
           <%masteries.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
