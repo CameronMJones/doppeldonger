@@ -8,18 +8,18 @@ class DongerGraph
 		@neo = Neography::Rest.new(ENV["GRAPHSTORY_URL"])
 	end
 
-	def add_champion(id, name, title, key)
+	def add_champion(id, name, title, skin)
 		sanitized_name = DongerString.sanitize(name)
 		query = "MERGE (c:Champion{id:{id}})
 				ON CREATE SET
 				c.name = {name},
 				c.id = {id},
-				c.title = {title}
-				c.key = {key}
+				c.title = {title},
+				c.skin = {skin}
 				ON MATCH SET
 				c.title = {title},
-				c.key = {key}"
-		@neo.execute_query(query, {:id => id, :name => sanitized_name, :title => title, :key => key})
+				c.skin = {skin}"
+		@neo.execute_query(query, {:id => id, :name => sanitized_name, :title => title, :skin => skin})
 	end
 
 	def add_summoner(id, name)
@@ -33,6 +33,28 @@ class DongerGraph
 				s.name = {name},
 				s.updated = timestamp()"
 		@neo.execute_query(query,{:id => id, :name => sanitized_name})
+	end
+
+	def add_spell(order, name, image, description)
+		query = "MERGE (s:Spell{name:{name}})
+				ON CREATE SET
+				s.name = {name},
+				s.order = {order},
+				s.image = {image},
+				s.description = {description}
+				ON MATCH SET
+				s.name = {name},
+				s.order = {order},
+				s.image = {image},
+				s.description = {description}"
+		@neo.execute_query(query,{:order => order, :name => name, :image => image, :description => description})
+	end
+
+	def add_uses(champion_id, name)
+		query = "MATCH (c:Champion{id:{champion_id}}),
+				(s:Spell{name:{name}})
+				CREATE UNIQUE (c)-[u:USES]->(s)"
+		@neo.execute_query(query, {:champion_id => champion_id, :name => name})
 	end
 
 	def add_mastery(summoner_id, champion_id, points)
@@ -82,10 +104,11 @@ class DongerGraph
 				(s1)-[:MASTERS]->(c2:Champion),
 				(s2:Summoner)-[:MASTERS]->(c1),
 				(s2)-[:MASTERS]->(c2),
-				(s2)-[:MASTERS]->(c3:Champion)
+				(s2)-[:MASTERS]->(c3:Champion),
+				(c3)-[:USES]->(sp:Spell)
 				WHERE s1.name = {name}
 				AND NOT (s1)-[:MASTERS]->(c3)
-				RETURN c3, count(c3) as Frequency
+				RETURN c3, count(c3) as Frequency, collect(distinct(sp)) as Spells
 				ORDER BY Frequency DESC
 				LIMIT 3"
 		@neo.execute_query(query, {:name => sanitized_name})
