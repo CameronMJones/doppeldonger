@@ -32,7 +32,7 @@ class DongerGraph
 	end
 
 	def add_mastery(summoner_id, champion_id, points)
-		query = "MATCH (s:Summoner{id:{summoner_id}}), 
+		query = "MATCH (s:Summoner{id:{summoner_id}}),
 				(c:Champion{id:{champion_id}})
 				CREATE UNIQUE (s)-[m:MASTERS]->(c)
 				SET m.points = {points}"
@@ -66,7 +66,7 @@ class DongerGraph
 	end
 
 	def add_exhibits(champion_id, name)
-		query = "MATCH (c:Champion{id:{champion_id}}), 
+		query = "MATCH (c:Champion{id:{champion_id}}),
 				(a:Attribute{name:{name}})
 				CREATE UNIQUE (c)-[e:EXHIBITS]->(a)"
 		@neo.execute_query(query, {:champion_id => champion_id, :name => name})
@@ -97,7 +97,7 @@ class DongerGraph
 		@neo.execute_query(query, {:name => sanitized_name})
 	end
 
-	def get_uniqueness()
+	def get_uniqueness(name)
 		sanitized_name = DongerString.sanitize(name)
 		query = "MATCH (s1:Summoner)-[:MASTERS]->(c1:Champion),
 						(s2:Summoner)-[:MASTERS]->(c1)
