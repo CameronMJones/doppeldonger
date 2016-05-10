@@ -54,7 +54,7 @@ unique_string = "#{one_match}% of summoners mastered at least one similar champi
           <h2> Have you considered trying...</h2>
         </div>
       </div>
-      <div class="col-lg-3" align="center">
+      <div class="col-lg-3" align="center" style="height:573px;">
         <h2 style="font-size:1.7em;padding-bottom:5px;"><%=summonername%></h2>
         <div class="col-md-12">
           <hr style="margin-top:0px;">
@@ -93,7 +93,7 @@ unique_string = "#{one_match}% of summoners mastered at least one similar champi
       <% champion_picks.each do |champion| %>
       <% champion_data = champion[0]["data"] %>
       <% champion_spells = champion[2].map{|spell| spell["data"]} %>
-      <div class="col-lg-3" align="center">
+      <div class="col-lg-3" align="center" style="height:573px;">
         <h3><%=champion_data["name"]%></h3>
         <% skin_key = champion_data["skin"] %>
         <img title="<%=champion_data["name"]%>" src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/<%=skin_key%>" style="max-width:100%;position:relative;"</img>
