@@ -126,11 +126,13 @@ class DongerGraph
 
 	def get_uniqueness(name)
 		sanitized_name = DongerString.sanitize(name)
-		query = "MATCH (s1:Summoner)-[:MASTERS]->(c1:Champion),
+		query = "MATCH (s:Summoner) 
+						WITH TOFLOAT(count(s)) as Total
+						MATCH (s1:Summoner)-[:MASTERS]->(c1:Champion),
 						(s2:Summoner)-[:MASTERS]->(c1)
 						WHERE s1.name = {name}
-						WITH s2, count(s2) As Frequency
-						RETURN Frequency, count(Frequency)"
+						WITH s2, count(s2) as Frequency, Total
+						RETURN Frequency, count(Frequency)/Total * 100 as Percent"
 		@neo.execute_query(query, {:name => sanitized_name})
 	end
 
