@@ -6,7 +6,22 @@ def add_champion(data, graph)
 	id = data["id"]
 	name = data["name"]
 	title = data["title"]
-	graph.add_champion(id, name, title)
+	skin = data["key"] + "_0.jpg"
+	graph.add_champion(id, name, title, skin)
+end
+
+def add_spells(data, graph)
+	id = data["id"]
+	spells = data["spells"].each_with_index do |info, index|
+		name = info["name"]
+		image = info["image"]["full"]
+		description = info["description"]
+		graph.add_spell(index+1, name, image, description)
+		graph.add_uses(id, name)
+	end
+	passive = data["passive"]
+	graph.add_spell(0, passive["name"], passive["image"]["full"], passive["description"])
+	graph.add_uses(id, passive["name"])
 end
 
 def add_defense(data, graph)
@@ -106,6 +121,7 @@ begin
 	champions.each do |champion, data|
 		puts "Adding Champion: #{champion}"
 		add_champion(data, graph)
+		add_spells(data, graph)
 		add_defense(data, graph)
 		add_difficulty(data, graph)
 		add_damage(data, graph)
