@@ -32,6 +32,12 @@ post '/summonerform/' do
     flash[:error] = "Sorry, we only support NA at this time"
     redirect '/'
   else
+    begin
+      DongerRest.get_summoners([summonername])
+    rescue RestClient::ResourceNotFound
+      flash[:error] = "Summoner Not Found"
+      redirect '/'
+    end
     erb :index, :locals => {'summonername' => summonername, 'region' => region,}
   end
 
