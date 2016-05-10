@@ -23,8 +23,8 @@ end
 recommendation = graph.recommend(summonername)["data"]
 champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 
-uniqueness = DongerGraph.get_uniqueness(summonername);
-#attributes = DongerGraph.get_attributes(summonername);
+#uniqueness = DongerGraph.get_uniqueness(summonername);
+attributes = DongerGraph.get_attributes(summonername);
 
 # champion_pool = ["Cho'Gath","Aatrox","Ahri"]
 %>
@@ -44,7 +44,6 @@ uniqueness = DongerGraph.get_uniqueness(summonername);
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
-          <p><%=uniqueness%></p>
           <%masteries.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
@@ -60,6 +59,7 @@ uniqueness = DongerGraph.get_uniqueness(summonername);
         </div>
         <div>
           <p style="text-decoration:underline;">Patterns We Found</p>
+          <p><%=attributes%></p>
         </div>
       </div>
       <% champion_pool.each do |champion| %>
