@@ -15,7 +15,7 @@ def add_spells(data, graph)
 	spells = data["spells"].each_with_index do |info, index|
 		name = info["name"]
 		image = info["image"]["full"]
-		description = info["description"]
+		description = info["sanitizedDescription"]
 		graph.add_spell(index+1, name, image, description)
 		graph.add_uses(id, name)
 	end
