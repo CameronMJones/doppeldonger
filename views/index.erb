@@ -37,9 +37,9 @@ uniqueness.each do |matchedplayers|
   uniquehash[matchedplayers[0]] = matchedplayers[1]
 end
 
-three_match = uniquehash[3]) ||= 0
-two_match = uniquehash[2] ||= 0
-one_match = uniquehash[1] ||= 0
+three_match = uniquehash[3]) || 0
+two_match = uniquehash[2] || 0
+one_match = uniquehash[1] || 0
 
 three_match = three_match.round(2)
 two_match = two_match.round(2)
