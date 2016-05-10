@@ -45,6 +45,7 @@ uniqueness = graph.get_uniqueness(summonername)
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
+          <p><%=uniquness%></p>
           <%masteries.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
@@ -60,6 +61,7 @@ uniqueness = graph.get_uniqueness(summonername)
         </div>
         <div>
           <p style="text-decoration:underline;">Patterns We Found</p>
+          <p><%=attributes%></p>
         </div>
       </div>
       <% champion_pool.each do |champion| %>
