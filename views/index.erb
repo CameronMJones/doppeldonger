@@ -57,14 +57,7 @@ end
               </div>
               <div class="col-md-8">
                 <p style="margin-bottom:0px;"><%=DongerRest.get_champion_name(mastery["championId"])%><p>
-                  <p title=
-                  <% if hashindex == 1 %>
-                  "<%=uniquehash[hashindex]%>% of people main this champ"
-                  <% else %>
-                  "<%=uniquehash[hashindex]%>% those people use this champ as their <%=hashindex%>"
-                  <%end%>
-                  style="font-size:10px;">"<%=uniquehash[hashindex]%>%"</p>
-                <% end %>
+                  <p title="<%=uniquehash[hashindex]%>% of people main this champ as their #<%=hashindex%>" style="font-size:10px;">"<%=uniquehash[hashindex]%>%"</p>
               </div>
             </div>
           <% hashindex = hashindex+1
