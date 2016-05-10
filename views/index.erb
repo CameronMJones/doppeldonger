@@ -58,8 +58,8 @@ unique_string = "#{one_match}% of summoners mastered at least one similar champi
           <h2> Have you considered trying...</h2>
         </div>
       </div>
-      <div class="col-lg-3" align="center" style="height:573px;">
-        <h2 style="font-size:1.7em;padding-bottom:5px;"><%=summonername%></h2>
+      <div id="first-col" class="col-lg-3" align="center" style="height:573px;">
+        <h2 style="font-size:1.7em;padding-bottom:5px;padding-top:5px;"><%=summonername%></h2>
         <div class="col-md-12">
           <hr style="margin-top:0px;">
           <p style="text-decoration:underline;">Top Masteries</p>
@@ -97,11 +97,11 @@ unique_string = "#{one_match}% of summoners mastered at least one similar champi
       <% champion_picks.each do |champion| %>
       <% champion_data = champion[0]["data"] %>
       <% champion_spells = champion[2].map{|spell| spell["data"]} %>
-      <div class="col-lg-3" align="center" style="height:573px;">
-        <h3><%=champion_data["name"]%></h3>
+      <div id="champion-col" class="col-lg-3" align="center" style="height:573px;">
+        <h3 id="champion-col-title" style=><%=champion_data["name"]%></h3>
         <% skin_key = champion_data["skin"] %>
-        <img title="<%=champion_data["name"]%>" src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/<%=skin_key%>" style="max-width:100%;position:relative;"</img>
-        <div class="row" style="padding-top:20px;padding-left:10px;padding-right:10px;">
+        <img title="<%=champion_data["name"]%>" src="http://ddragon.leagueoflegends.com/cdn/img/champion/loading/<%=skin_key%>" style="max-width:100%;padding-bottom:10px;position:relative;"</img>
+        <div id="spell" class="row" style="padding-top:20px;padding-left:10px;padding-right:10px;">
           <% champion_passive = champion_spells.find{|spell| spell["order"] == 0} %>
           <div class="col-sm-3" align="center" style="padding-left:0px;padding-right:0px;">
             <img title="<%=champion_passive["description"]%>" src="http://ddragon.leagueoflegends.com/cdn/6.9.1/img/passive/<%=champion_passive["image"]%>" style="max-width:80%;position:relative;">

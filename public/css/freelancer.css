@@ -126,6 +126,25 @@ header .intro-text .skills {
     font-weight: 300;
 }
 
+@media(max-width:1200px) {
+  #first-col {
+    display: none;
+  }
+  #spell {
+    display: none;
+  }
+  #champion-col {
+    height: 350px;
+  }
+  #champion-col-title {
+    font-size: 22px;
+  }
+  #my-footer {
+    height: 150px;
+  }
+}
+
+
 @media(min-width:768px) {
     header .container {
         padding-top: 100px;
