@@ -33,9 +33,16 @@ end
 
 uniqueness = graph.get_uniqueness(summonername)["data"]
 uniquehash = Hash.new
-uniqueness.each do |championplayed|
-  uniquehash[championplayed[0]] = championplayed[1]
+uniqueness.each do |matchedplayers|
+  uniquehash[matchedplayers[0]] = matchedplayers[1]
 end
+
+three_match = uniquehash[3] || 0
+two_match = uniquehash[2] || 0
+one_match = uniquehash[1] || 0
+
+unique_string = "#{one_match}% of summoners mastered at least one similar champion, #{two_match}% mastered at least two similar champions, and #{three_match}% mastered all three similar champion!"
+
 %>
 
 <body onLoad="setQuote('Just as I hypothesized!')">
@@ -53,27 +60,17 @@ end
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
-          <% hashindex = 1 %>
-          <%mastery_data.each do |mastery|%>
+            <%mastery_data.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
                 <p title="Total Mastery Points" style="font-size:10px;"><%=mastery[1]["data"]["points"]%></p>
               </div>
               <div class="col-md-8">
                 <p style="margin-bottom:0px;"><%=mastery[2]["data"]["name"]%></p>
-                <% if hashindex == 1 %>
-                  <p title="<%=uniquehash[hashindex]%>% of people main this champ as their #<%=hashindex%>" style="font-size:10px;"><%=uniquehash[hashindex]%>%</p>
-                <% else
-                     if !uniquehash[hashindex].nil? %>
-                  <p title="<%=uniquehash[hashindex]%>% of those people use this champ as their #<%=hashindex%>" style="font-size:10px;"><%=uniquehash[hashindex]%>%</p>
-                     <% else %>
-                  <p title="0% of those people use this champ as their #<%=hashindex%>" style="font-size:10px;">0%</p>
-                     <% end %>
-                <% end %>
               </div>
             </div>
-          <% hashindex = hashindex+1
-          end%>
+            <%end%>
+            <p style="font-size:12px;"><%=unique_string%></p>
           <hr>
         </div>
         <div>
