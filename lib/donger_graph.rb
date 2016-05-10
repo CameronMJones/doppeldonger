@@ -87,24 +87,24 @@ class DongerGraph
 		@neo.execute_query(query, {:name => sanitized_name})
 	end
 
-	def get_attributes(name)
-		sanitized_name = DongerString.sanitize(name)
-		query =	"MATCH (s1:Summoner)-[:MASTERS]->(c1:Champion)-[:EXHIBITS]->(a1:Attribute)
-				WHERE s1.name = {name}
-				RETURN a1 as Attribute, count(a1) as Total
-				ORDER BY Total DESC
-				LIMIT 3"
-		@neo.execute_query(query, {:name => sanitized_name})
-	end
-
-	def get_uniqueness(name)
-		sanitized_name = DongerString.sanitize(name)
-		query = "MATCH (s1:Summoner)-[:MASTERS]->(c1:Champion),
-						(s2:Summoner)-[:MASTERS]->(c1)
-						WHERE s1.name = {name}
-						WITH s2, count(s2) As Frequency
-						RETURN Frequency, count(Frequency)"
-		@neo.execute_query(query, {:name => sanitized_name})
-	end
+	# def get_attributes(name)
+	# 	sanitized_name = DongerString.sanitize(name)
+	# 	query =	"MATCH (s1:Summoner)-[:MASTERS]->(c1:Champion)-[:EXHIBITS]->(a1:Attribute)
+	# 			WHERE s1.name = {name}
+	# 			RETURN a1 as Attribute, count(a1) as Total
+	# 			ORDER BY Total DESC
+	# 			LIMIT 3"
+	# 	@neo.execute_query(query, {:name => sanitized_name})
+	# end
+	#
+	# def get_uniqueness(name)
+	# 	sanitized_name = DongerString.sanitize(name)
+	# 	query = "MATCH (s1:Summoner)-[:MASTERS]->(c1:Champion),
+	# 					(s2:Summoner)-[:MASTERS]->(c1)
+	# 					WHERE s1.name = {name}
+	# 					WITH s2, count(s2) As Frequency
+	# 					RETURN Frequency, count(Frequency)"
+	# 	@neo.execute_query(query, {:name => sanitized_name})
+	# end
 
 end
