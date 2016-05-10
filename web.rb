@@ -37,9 +37,9 @@ post '/summonerform/' do
 
 end
 
-#error do
-#  erb :oops
-#end
+error do
+  erb :oops
+end
 
 not_found do
   erb :oops

@@ -23,8 +23,8 @@ end
 recommendation = graph.recommend(summonername)["data"]
 champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 
-uniqueness = graph.get_uniqueness(summonername)
-attributes = graph.get_attributes(summonername)
+#uniqueness = graph.get_uniqueness(summonername)
+#attributes = graph.get_attributes(summonername)
 
 # champion_pool = ["Cho'Gath","Aatrox","Ahri"]
 %>
