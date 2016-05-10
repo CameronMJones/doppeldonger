@@ -8,15 +8,16 @@ When we looked at Riots API Challenge (April-May 2016) and saw they wanted us to
 ####Challenges
 
 This problem presented us with a number of Challenges.
+
 1. There is no easy way to get aggregate data from the Riot API. We had to collect our own and store it in a database.
 2. When looking at what database to use, we wanted to use PostgreSQL or MySQL. But the more research we did, we saw that Graph Databases were ideal for this situation. Neither of us had worked on a graph database before, so we were treading in new waters.
 3. We wanted to display our data in a simple Web UI. However, both of our experience in Web was limited. At most we had spun up simple Sinatra servers that were never pretty. We had to learn how seriously work with CSS & Javascript for the first time.
 
 ####Tech Stack
-Backend: Ruby
-Database: Graph Story
-Front End: Sinatra, HTML, CSS & Javascript (Used Twitter Bootstrap)
-Platform: Heroku (PaaS)
+* Backend: Ruby
+* Database: Graph Story
+* Front End: Sinatra, HTML, CSS & Javascript (Used Twitter Bootstrap)
+* Platform: Heroku (PaaS)
 
 ####Getting Started
 
