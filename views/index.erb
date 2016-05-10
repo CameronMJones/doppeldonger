@@ -37,12 +37,59 @@ uniqueness.each do |matchedplayers|
   uniquehash[matchedplayers[0]] = matchedplayers[1]
 end
 
+three_match = uniquehash[3].round(2) ||= 0
+two_match = uniquehash[2].round(2) ||= 0
+one_match = uniquehash[1].round(2) ||= 0
+
+unique_string = "#{one_match}% of summoners mastered at least one similar champion, #{two_match}% mastered at least two similar champions, and #{three_match}% mastered all three similar champion!"
+
 %>
 
 <body onLoad="setQuote('Just as I hypothesized!')">
   <section id="portfolio">
     <div class="container">
       <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-9" style="padding-bottom:20px;text-align:center;">
+          <h2> Have you considered trying...</h2>
+        </div>
+      </div>
+      <div class="col-lg-3" align="center" style="height:573px;">
+        <h2 style="font-size:1.7em;padding-bottom:5px;"><%=summonername%></h2>
+        <div class="col-md-12">
+          <hr style="margin-top:0px;">
+          <p style="text-decoration:underline;">Top Masteries</p>
+            <%mastery_data.reverse.each do |mastery|%>
+            <div class="row">
+              <div class="col-md-4">
+                <%if mastery[1]["data"]["points"] >= 21600 %>
+                <p title="Mastery Level" style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;">5</p>
+                <% elsif mastery[1]["data"]["points"] >= 12600 %>
+                <p title="Mastery Level" style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;">4</p>
+                <% elsif mastery[1]["data"]["points"] >= 6000 %>
+                <p title="Mastery Level" style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;">3</p>
+                <% elsif mastery[1]["data"]["points"] >= 1800 %>
+                <p title="Mastery Level" style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;">2</p>
+                <% else %>
+                <p title="Mastery Level" style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;">1</p>
+                <% end %>
+                <p title="Total Mastery Points" style="font-size:10px;"><%=mastery[1]["data"]["points"]%></p>
+              </div>
+              <div class="col-md-8">
+                <p style="margin-bottom:0px;"><%=mastery[2]["data"]["name"]%></p>
+              </div>
+            </div>
+            <%end%>
+            <p style="font-size:12px;"><%=unique_string%></p>
+          <hr>
+        </div>
+        <div>
+          <p style="text-decoration:underline;">Champions You Like Have:</p>
+          <% attributeary.each do |attribute|%>
+          <p style="font-size:17px;"><%=attribute%></p>
+          <% end%>
+        </div>
+      </div>
       <% champion_picks.each do |champion| %>
       <% champion_data = champion[0]["data"] %>
       <% champion_spells = champion[2].map{|spell| spell["data"]} %>
