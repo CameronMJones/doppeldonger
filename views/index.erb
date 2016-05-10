@@ -48,7 +48,7 @@ end
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
-          <%= uniquehash %>
+          <% hashindex = 0 %>
           <%masteries.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
@@ -57,9 +57,15 @@ end
               </div>
               <div class="col-md-8">
                 <p><%=DongerRest.get_champion_name(mastery["championId"])%><p>
+                <% if hashindex == 0 %>
+                  <p>uniquehash[hashindex]</p>
+                <% else %>
+                  <p>uniquehash[hashindex]</p>
+                <% end %>
               </div>
             </div>
-          <%end%>
+          <% hashindex = hashindex+1
+          end%>
           <hr>
         </div>
         <div>
