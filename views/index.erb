@@ -26,10 +26,10 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 attributes = graph.get_attributes(summonername)["data"]
 uniqueness = graph.get_uniqueness(summonername)["data"]
 
-unique-hash = Hash.new
+uniquehash = Hash.new
 
-uniqueness.each do |champion-played|
-  unique-hash[champion-played[0]] = champion-played[1]
+uniqueness.each do |championplayed|
+  uniquehash[championplayed[0]] = championplayed[1]
 end
 %>
 
