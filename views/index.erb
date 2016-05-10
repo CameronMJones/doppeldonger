@@ -20,7 +20,7 @@ if mastery_data.length == 0
   end
 end
 
-recommendation = graph.recommend(summonername)["data"]
+recommendation = graph.get_popular_picks(summonername)["data"]
 champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 
 # champion_pool = ["Cho'Gath","Aatrox","Ahri"]
