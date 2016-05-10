@@ -22,6 +22,10 @@ end
 
 champion_picks = graph.get_popular_picks(summonername)["data"]
 attributes = graph.get_attributes(summonername)["data"]
+attributeary = []
+attributes.each do |attribute|
+  attributeary.push(attribute[0]["data"]["name"])
+end
 
 uniqueness = graph.get_uniqueness(summonername)["data"]
 uniquehash = Hash.new
@@ -57,7 +61,7 @@ end
                 <% if hashindex == 1 %>
                   <p title="<%=uniquehash[hashindex]%>% of people main this champ as their #<%=hashindex%>" style="font-size:10px;"><%=uniquehash[hashindex]%>%</p>
                 <% else
-                     if uniquehash[hashindex] != "" %>
+                     if !uniquehash[hashindex].nil? %>
                   <p title="<%=uniquehash[hashindex]%>% of those people use this champ as their #<%=hashindex%>" style="font-size:10px;"><%=uniquehash[hashindex]%>%</p>
                      <% else %>
                   <p title="0% of those people use this champ as their #<%=hashindex%>" style="font-size:10px;">0%</p>
@@ -70,8 +74,10 @@ end
           <hr>
         </div>
         <div>
-          <p style="text-decoration:underline;">Patterns We Found</p>
-          <p><%=attributes%></p>
+          <p style="text-decoration:underline;">Champions You Like Have:</p>
+          <% attributeary.each do |attribute|%>
+          <p style="font-size:17px;"><%=attribute%></p>
+          <% end%>
         </div>
       </div>
       <% champion_picks.each do |champion| %>
