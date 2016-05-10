@@ -24,9 +24,13 @@ recommendation = graph.get_popular_picks(summonername)["data"]
 champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 
 attributes = graph.get_attributes(summonername)
-uniqueness = graph.get_uniqueness(summonername)
+uniqueness = graph.get_uniqueness(summonername)["columns"]["data"]
 
-# champion_pool = ["Cho'Gath","Aatrox","Ahri"]
+unique_hash = {}
+
+if uniqueness.lengh > 0
+  unique_hash[champion_pool[uniqueness[0]]] = uniqueness[1]
+end
 
 %>
 
@@ -45,15 +49,16 @@ uniqueness = graph.get_uniqueness(summonername)
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
-          <p><%=uniqueness%></p>
+          <p><%=unique_hash%></p>
           <%masteries.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
-                <p style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;"><%=mastery["championLevel"]%></p>
-                <p style="font-size:10px;"><%=mastery["championPoints"]%></p>
+                <p title="Mastery Level" style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;"><%=mastery["championLevel"]%></p>
+                <p title="Total Mastery Points" style="font-size:10px;"><%=mastery["championPoints"]%></p>
               </div>
               <div class="col-md-8">
                 <p><%=DongerRest.get_champion_name(mastery["championId"])%><p>
+                <!--p style="font-size:10px;"><%=unique_hash[DongerRest.get_champion_name(mastery["championId"])]%></p-->
               </div>
             </div>
           <%end%>
