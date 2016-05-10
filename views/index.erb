@@ -37,9 +37,9 @@ uniqueness.each do |matchedplayers|
   uniquehash[matchedplayers[0]] = matchedplayers[1]
 end
 
-three_match = uniquehash[3] || 0
-two_match = uniquehash[2] || 0
-one_match = uniquehash[1] || 0
+three_match = uniquehash[3].round(2) || 0
+two_match = uniquehash[2].round(2) || 0
+one_match = uniquehash[1].round(2) || 0
 
 unique_string = "#{one_match}% of summoners mastered at least one similar champion, #{two_match}% mastered at least two similar champions, and #{three_match}% mastered all three similar champion!"
 
