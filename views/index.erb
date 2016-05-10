@@ -25,12 +25,12 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 
 attributes = graph.get_attributes(summonername)["data"]
 uniqueness = graph.get_uniqueness(summonername)["data"]
-#
-# uniquehash = Hash.new
-#
-# uniqueness.each do |championplayed|
-#   uniquehash[championplayed[0]] = championplayed[1]
-# end
+
+uniquehash = Hash.new
+
+uniqueness.each do |championplayed|
+  uniquehash[championplayed[0]] = championplayed[1]
+end
 %>
 
 <body onLoad="setQuote('Just as I hypothesized!')">
@@ -48,7 +48,7 @@ uniqueness = graph.get_uniqueness(summonername)["data"]
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
-          <%= uniqueness %>
+          <%= uniquehash %>
           <%masteries.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
