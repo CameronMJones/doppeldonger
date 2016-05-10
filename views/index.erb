@@ -26,11 +26,11 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 attributes = graph.get_attributes(summonername)
 uniqueness = graph.get_uniqueness(summonername)["columns"]["data"]
 
-unique_hash = {}
-
-if uniqueness.lengh > 0
-  unique_hash[champion_pool[uniqueness[0]]] = uniqueness[1]
-end
+# unique_hash = Hash.new
+#
+# if uniqueness.lengh > 0
+#   unique_hash[champion_pool[uniqueness[0]]] = uniqueness[1]
+# end
 
 %>
 
@@ -49,7 +49,7 @@ end
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
-          <p><%=unique_hash%></p>
+          <p><%=uniqueness%></p>
           <%masteries.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
