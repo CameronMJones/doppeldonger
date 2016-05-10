@@ -24,10 +24,9 @@ recommendation = graph.get_popular_picks(summonername)["data"]
 champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 
 attributes = graph.get_attributes(summonername)["data"]
+
 uniqueness = graph.get_uniqueness(summonername)["data"]
-
 uniquehash = Hash.new
-
 uniqueness.each do |championplayed|
   uniquehash[championplayed[0]] = championplayed[1]
 end
@@ -59,8 +58,12 @@ end
                 <p style="margin-bottom:0px;"><%=DongerRest.get_champion_name(mastery["championId"])%></p>
                 <% if hashindex == 1 %>
                   <p title="<%=uniquehash[hashindex]%>% of people main this champ as their #<%=hashindex%>" style="font-size:10px;"><%=uniquehash[hashindex]%>%</p>
-                <% else %>
-                  <p title="<%=uniquehash[hashindex]%>% those people use this champ as their #<%=hashindex%>" style="font-size:10px;"><%=uniquehash[hashindex]%>%</p>
+                <% else
+                     if uniquehash[hashindex] != "" %>
+                  <p title="<%=uniquehash[hashindex]%>% of those people use this champ as their #<%=hashindex%>" style="font-size:10px;"><%=uniquehash[hashindex]%>%</p>
+                     <% else %>
+                  <p title="0% of those people use this champ as their #<%=hashindex%>" style="font-size:10px;">0%</p>
+                     <% end %>
                 <% end %>
               </div>
             </div>
