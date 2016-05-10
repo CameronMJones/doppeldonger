@@ -3,7 +3,7 @@ class DongerConstants
 	BALANCED_DEFENSE = "Balanced Defense"
 	LOW_DEFENSE = "Low Defense"
 
-	HIGH_DIFFICULTY = "High Diffulty"
+	HIGH_DIFFICULTY = "High Difficulty"
 	BALANCED_DIFFICULTY = "Balanced Difficulty"
 	LOW_DIFFICULTY = "Low Difficulty"
 
