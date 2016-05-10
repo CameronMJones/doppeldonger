@@ -60,9 +60,20 @@ unique_string = "#{one_match}% of summoners mastered at least one similar champi
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
-            <%mastery_data.each do |mastery|%>
+            <%mastery_data.reverse.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
+                <%if mastery[1]["data"]["points"] >= 21600 %>
+                <p title="Mastery Level" style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;">5</p>
+                <% elsif mastery[1]["data"]["points"] >= 12600 %>
+                <p title="Mastery Level" style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;">4</p>
+                <% elsif mastery[1]["data"]["points"] >= 6000 %>
+                <p title="Mastery Level" style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;">3</p>
+                <% elsif mastery[1]["data"]["points"] >= 1800 %>
+                <p title="Mastery Level" style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;">2</p>
+                <% else %>
+                <p title="Mastery Level" style="margin-bottom:0px;color:#2E79D4;text-shadow: -1px 0 #0B2541, 0 1px #0B2541, 1px 0 #0B2541, 0 -1px #0B2541;">1</p>
+                <% end %>
                 <p title="Total Mastery Points" style="font-size:10px;"><%=mastery[1]["data"]["points"]%></p>
               </div>
               <div class="col-md-8">
