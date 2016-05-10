@@ -23,15 +23,13 @@ end
 recommendation = graph.get_popular_picks(summonername)["data"]
 champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 
-attributes = graph.get_attributes(summonername)
-uniqueness = graph.get_uniqueness(summonername)["columns"]["data"]
+attributes = graph.get_attributes(summonername)["data"]
 
-# unique_hash = Hash.new
-#
-# if uniqueness.lengh > 0
-#   unique_hash[champion_pool[uniqueness[0]]] = uniqueness[1]
-# end
-
+uniqueness = graph.get_uniqueness(summonername)["data"]
+uniquehash = Hash.new
+uniqueness.each do |championplayed|
+  uniquehash[championplayed[0]] = championplayed[1]
+end
 %>
 
 <body onLoad="setQuote('Just as I hypothesized!')">
@@ -49,7 +47,7 @@ uniqueness = graph.get_uniqueness(summonername)["columns"]["data"]
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
-          <p><%=uniqueness%></p>
+          <% hashindex = 1 %>
           <%masteries.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
@@ -57,11 +55,20 @@ uniqueness = graph.get_uniqueness(summonername)["columns"]["data"]
                 <p title="Total Mastery Points" style="font-size:10px;"><%=mastery["championPoints"]%></p>
               </div>
               <div class="col-md-8">
-                <p><%=DongerRest.get_champion_name(mastery["championId"])%><p>
-                <!--p style="font-size:10px;"><%=unique_hash[DongerRest.get_champion_name(mastery["championId"])]%></p-->
+                <p style="margin-bottom:0px;"><%=DongerRest.get_champion_name(mastery["championId"])%></p>
+                <% if hashindex == 1 %>
+                  <p title="<%=uniquehash[hashindex]%>% of people main this champ as their #<%=hashindex%>" style="font-size:10px;"><%=uniquehash[hashindex]%>%</p>
+                <% else
+                     if uniquehash[hashindex] != "" %>
+                  <p title="<%=uniquehash[hashindex]%>% of those people use this champ as their #<%=hashindex%>" style="font-size:10px;"><%=uniquehash[hashindex]%>%</p>
+                     <% else %>
+                  <p title="0% of those people use this champ as their #<%=hashindex%>" style="font-size:10px;">0%</p>
+                     <% end %>
+                <% end %>
               </div>
             </div>
-          <%end%>
+          <% hashindex = hashindex+1
+          end%>
           <hr>
         </div>
         <div>
