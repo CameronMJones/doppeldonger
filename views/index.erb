@@ -26,7 +26,7 @@ champion_pool = recommendation.map{|row| row[0]["data"]["name"]}
 attributes = graph.get_attributes(summonername)["data"]
 attributeary = []
 attributes.each do |attribute|
-  attributeary.push(attribute["data"]["name"])
+  attributeary.push(attribute[0]["data"])
 end
 
 uniqueness = graph.get_uniqueness(summonername)["data"]
