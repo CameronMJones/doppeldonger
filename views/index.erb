@@ -44,7 +44,6 @@ attributes = graph.get_attributes(summonername)
         <div class="col-md-12">
           <hr>
           <p style="text-decoration:underline;">Top Masteries</p>
-          <p><%=uniqueness%></p>
           <%masteries.each do |mastery|%>
             <div class="row">
               <div class="col-md-4">
@@ -60,7 +59,6 @@ attributes = graph.get_attributes(summonername)
         </div>
         <div>
           <p style="text-decoration:underline;">Patterns We Found</p>
-          <p><%=attributes%></p>
         </div>
       </div>
       <% champion_pool.each do |champion| %>
